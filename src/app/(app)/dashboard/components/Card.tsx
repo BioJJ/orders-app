@@ -26,7 +26,7 @@ export function Card({
 }: Readonly<ICard>) {
   const router = useRouter();
 
-  console.log(`${url}?page=1&status_sample_name=${status}`);
+  // console.log(`${url}?page=1&status_sample_name=${status}`);
 
   return (
     <div

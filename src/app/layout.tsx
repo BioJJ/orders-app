@@ -1,3 +1,4 @@
+import { RootLayoutProvider } from "@/components/Providers/RootLayoutProvider";
 import "./globals.css";
 
 import type { Metadata } from "next";
@@ -28,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <RootLayoutProvider>{children}</RootLayoutProvider>
       </body>
     </html>
   );
