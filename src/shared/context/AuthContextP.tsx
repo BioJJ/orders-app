@@ -20,6 +20,8 @@ import {
   useState
 } from "react";
 
+import { destroyCookie, setCookie } from "nookies";
+
 type AuthContextType = {
   session?: Session;
   signOut: () => void;
@@ -52,10 +54,15 @@ export function AuthContextProvider({
       user: res,
       expires: expiresIn
     });
+    setCookie(undefined, "app-access_token", res.access_token, {
+      expires: expiresIn,
+      path: "/"
+    });
   }, []);
 
   const signOut = useCallback(async () => {
     replace("/auth/login");
+    destroyCookie(undefined, "app-access_token", { path: "/" });
     removeSessionStorage("session");
     setSession(undefined);
   }, [replace]);
