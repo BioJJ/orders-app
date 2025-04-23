@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { signInAction } from "../specifications/auth.actions";
 import { LoginFormData } from "../specifications/auth.schemas";
 import { updateErrorToast, updateSuccessToast } from "@/utils/toast";
+import { useAuth } from "@/shared/context/AuthContextP";
 
 const LoginForm: React.FC = () => {
   const { push } = useRouter();
@@ -14,6 +15,7 @@ const LoginForm: React.FC = () => {
     password: ""
   });
   const [loading, setLoading] = useState(false);
+  const { handleSetSession } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -36,6 +38,7 @@ const LoginForm: React.FC = () => {
 
     if (ok) {
       updateSuccessToast(toastId, message);
+      handleSetSession(res!);
       push("/dashboard");
     } else {
       updateErrorToast(toastId, message);
