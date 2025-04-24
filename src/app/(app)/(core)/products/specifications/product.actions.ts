@@ -42,7 +42,7 @@ export const getInitialProductsAction = async (params?: string) => {
   }
 };
 
-export const createPatientAction = async (body: any) => {
+export const createProductAction = async (body: any) => {
   try {
     const token = (await cookies()).get("app-access_token")?.value;
     const data = await postProducts(token, body);
